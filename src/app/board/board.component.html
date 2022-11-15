@@ -1,16 +1,28 @@
-<h1>Current Player: {{ getPlayer() }}</h1>
-<h2>Number of times X has won: {{ getXwins() }}</h2>
-<h2>Number of times O has won: {{ getOwins() }}</h2>
-<button (click)="newGame()">Start New Game</button>
+<div *ngIf="!loggedIn">
+    <label>Username : <input type="text" [(ngModel)]="userName"/></label><br>
+    <label>Password : <input type="password" [(ngModel)]="password"/></label><br>
+    <button (click)="login()">Login</button>
+</div>
 
-<h2 *ngIf="winner">
-    Player {{ winner }} won the game
-</h2>
+<div *ngIf="loggedIn">
+    <button (click)="logout()">Logout</button>
+</div>
 
-<main>
-    <app-square 
-        *ngFor="let val of squares; let i = index"
-        [value]="val"
-        (click)="makeMove(i)">
-    </app-square>
-</main>
+<div *ngIf="loggedIn">
+    <h1>Current Player: {{ getPlayer() }}</h1>
+    <h2>Number of times X has won: {{ getXwins() }}</h2>
+    <h2>Number of times O has won: {{ getOwins() }}</h2>
+    <button (click)="newGame()">Start New Game</button>
+
+    <h2 *ngIf="winner">
+        Player {{ winner }} won the game
+    </h2>
+
+    <main>
+        <app-square 
+            *ngFor="let val of squares; let i = index"
+            [value]="val"
+            (click)="makeMove(i)">
+        </app-square>
+    </main>
+</div>

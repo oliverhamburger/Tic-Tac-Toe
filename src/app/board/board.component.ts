@@ -10,11 +10,25 @@ export class BoardComponent implements OnInit {
   squares!: any[];
   xIsNext!: boolean;
   winner!: string;
+  loggedIn!: boolean;
+  userName!: string;
+  password!: string;
 
   constructor(private service: BackendConnectorService) { }
 
   ngOnInit(): void {
     this.newGame();
+    this.loggedIn = false;
+  }
+
+  login(){
+    this.loggedIn = this.service.login(this.userName, this.password);
+    this.userName = "";
+    this.password = "";
+  }
+
+  logout(){
+    this.loggedIn = this.service.logout();
   }
 
   newGame(){
