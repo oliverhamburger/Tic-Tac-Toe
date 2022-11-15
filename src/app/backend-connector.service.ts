@@ -7,23 +7,27 @@ export class BackendConnectorService {
 
   constructor() { }
 
-  x = 0;
-  o = 0;
-
   getXwins(){
-    return this.x;
+    return JSON.parse(this.httpGet('http://localhost:8000/getXwins')).value;
   }
 
   getOwins(){
-    return this.o;
+    return JSON.parse(this.httpGet('http://localhost:8000/getOwins')).value;
   }
 
   addXwin(){
-    this.x++;
+    this.httpGet('http://localhost:8000/addOwins');
   }
 
   addOwin(){
-    this.o++;
+    this.httpGet('http://localhost:8000/addXwins');
+  }
+
+  httpGet(theUrl: string | URL) {
+    let xmlHttpReq = new XMLHttpRequest();
+    xmlHttpReq.open("GET", theUrl, false); 
+    xmlHttpReq.send(null);
+    return xmlHttpReq.responseText;
   }
 
   
