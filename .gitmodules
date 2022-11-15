@@ -1,0 +1,3 @@
+[submodule "backend-for-tic-tak-toe"]
+	path = backend-for-tic-tak-toe
+	url = https://github.com/oliverhamburger/backend-for-tic-tak-toe.git
