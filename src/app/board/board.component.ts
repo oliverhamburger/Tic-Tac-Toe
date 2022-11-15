@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendConnectorService } from '../backend-connector.service';
 
 @Component({
   selector: 'app-board',
@@ -10,7 +11,7 @@ export class BoardComponent implements OnInit {
   xIsNext!: boolean;
   winner!: string;
 
-  constructor() { }
+  constructor(private service: BackendConnectorService) { }
 
   ngOnInit(): void {
     this.newGame();
@@ -33,6 +34,12 @@ export class BoardComponent implements OnInit {
     }
 
     this.winner = this.calculateWinner();
+    if(this.winner === 'O'){
+      this.service.addOwin();
+    }else if(this.winner === 'X'){
+      this.service.addXwin();
+    }
+    
   }
 
   calculateWinner(){
@@ -44,6 +51,14 @@ export class BoardComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  getXwins(){
+    return this.service.getXwins();
+  }
+
+  getOwins(){
+    return this.service.getOwins();
   }
 
 }

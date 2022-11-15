@@ -1,4 +1,6 @@
 <h1>Current Player: {{ getPlayer() }}</h1>
+<h2>Number of times X has won: {{ getXwins() }}</h2>
+<h2>Number of times O has won: {{ getOwins() }}</h2>
 <button (click)="newGame()">Start New Game</button>
 
 <h2 *ngIf="winner">
