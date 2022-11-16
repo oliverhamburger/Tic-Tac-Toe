@@ -1,17 +1,20 @@
-<div *ngIf="!loggedIn">
-    <label>Username : <input type="text" [(ngModel)]="userName"/></label><br>
-    <label>Password : <input type="password" [(ngModel)]="password"/></label><br>
-    <button (click)="login()">Login</button>
+<div class="login" *ngIf="!loggedIn">
+    <label>Username : <input type="text" placeholder="Username" [(ngModel)]="userName"/></label>
+    <label>Password : <input type="password" placeholder="Password" [(ngModel)]="password"/></label>
+    <button class="loginButton" (click)="login()">Login</button>
 </div>
 
 <div *ngIf="loggedIn">
-    <button (click)="logout()">Logout</button>
+    <button class="loginButton" (click)="logout()">Logout</button>
 </div>
 
-<div *ngIf="loggedIn">
-    <h1>Current Player: {{ getPlayer() }}</h1>
-    <h2>Number of times X has won: {{ getXwins() }}</h2>
-    <h2>Number of times O has won: {{ getOwins() }}</h2>
+<div class="game" *ngIf="loggedIn">
+    <div class="gameInfo">
+        <h1>Current Player: {{ getPlayer() }}</h1>
+        <h2>Welcome {{ getUserName() }}</h2>
+        <h2>Number of times X has won: {{ getXwins() }}</h2>
+        <h2>Number of times O has won: {{ getOwins() }}</h2>
+    </div>
     <button (click)="newGame()">Start New Game</button>
 
     <h2 *ngIf="winner">

@@ -23,12 +23,12 @@ export class BoardComponent implements OnInit {
 
   login(){
     this.loggedIn = this.service.login(this.userName, this.password);
-    this.userName = "";
-    this.password = "";
   }
 
   logout(){
-    this.loggedIn = this.service.logout();
+    this.loggedIn = this.service.logout(this.userName);
+    this.userName = "";
+    this.password = "";
   }
 
   newGame(){
@@ -49,9 +49,9 @@ export class BoardComponent implements OnInit {
 
     this.winner = this.calculateWinner();
     if(this.winner === 'O'){
-      this.service.addOwin();
+      this.service.addOwin(this.userName);
     }else if(this.winner === 'X'){
-      this.service.addXwin();
+      this.service.addXwin(this.userName);
     }
     
   }
@@ -68,11 +68,15 @@ export class BoardComponent implements OnInit {
   }
 
   getXwins(){
-    return this.service.getXwins();
+    return this.service.getXwins(this.userName);
   }
 
   getOwins(){
-    return this.service.getOwins();
+    return this.service.getOwins(this.userName);
+  }
+
+  getUserName(){
+    return this.userName;
   }
 
 }
